@@ -309,7 +309,7 @@ public class RegistrationPage extends javax.swing.JFrame {
         
         //register user to database
         
-        registerUser(email, firstName, lastName, salt, password);
+        registerUser(email, firstName, lastName, salt, securePassword);
         
         //Define user and set user details within the application
         createUser(email, firstName, lastName);
