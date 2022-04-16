@@ -19,10 +19,14 @@ CourseworkProject/Language.java
  Language$7
  Language$8
  Language$9
+CourseworkProject/User.java
+ CourseworkProject.User
 CourseworkProject/TopicSelection.java
  CourseworkProject.TopicSelection
  CourseworkProject.TopicSelection$1
  CourseworkProject.TopicSelection$2
+CourseworkProject/ApplicationInfo.java
+ CourseworkProject.ApplicationInfo
 CourseworkProject/SubTopicSelection.java
  CourseworkProject.SubTopicSelection
  CourseworkProject.SubTopicSelection$1
@@ -65,19 +69,15 @@ CourseworkProject/MainPage.java
  CourseworkProject.MainPage$1
  CourseworkProject.MainPage$2
  CourseworkProject.MainPage$3
-CourseworkProject/ApplicationInfo.java
- CourseworkProject.ApplicationInfo
-CourseworkProject/JdbcCrud.java
- CourseworkProject.JdbcCrud
-CourseworkProject/ConnectDB.java
- CourseworkProject.ConnectDB
 CourseworkProject/Main.java
  CourseworkProject.Main
+CourseworkProject/connectDB.java
+ CourseworkProject.connectDB
+CourseworkProject/JdbcCrud.java
+ CourseworkProject.JdbcCrud
 CourseworkProject/RegistrationPage.java
  CourseworkProject.RegistrationPage
  CourseworkProject.RegistrationPage$1
  CourseworkProject.RegistrationPage$2
  CourseworkProject.RegistrationPage$3
  CourseworkProject.RegistrationPage$4
-CourseworkProject/User.java
- CourseworkProject.User
