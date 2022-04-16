@@ -11,5 +11,5 @@ repositories {
 
 dependencies {
     testImplementation     'junit:junit:4.13'
-    compile 'mysql:mysql-connector-java:8.0.27'
+    runtime fileTree(dir: 'libraries', include: 'mysql-connector-java-8.0.27.jar')
 }

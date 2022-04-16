@@ -19,9 +19,10 @@ public class JdbcCrud {
         
     //verify if email is already within the database  
     public static boolean checkIfEmailExists(String email){
-        try{ 
+        try{
+            connectDB connectDB = new connectDB();
             Connection con = connectDB.getConnection();
-            String query = "select * from user_Info where user_email=?";
+            String query = "select * from client_Info where client_email=?";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
@@ -39,9 +40,10 @@ public class JdbcCrud {
     //register user to the database
     public static void registerUser(String email, String firstName, String lastName, String salt, String password){
         try{
+            connectDB connectDB = new connectDB();
             Connection con = connectDB.getConnection();
             int accountType = 0; //0 regular user //1 admin
-            String query = "insert into user_Info(user_email, user_first_name, user_last_name, user_salt, user_encrypted_password, user_account_type) "
+            String query = "insert into client_Info(client_email, client_forename, client_surname, client_salt, client_encrypted_password, client_account_type) "
                     + "VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, email);
