@@ -245,7 +245,6 @@ public class RegistrationPage extends javax.swing.JFrame {
     private void registerUser() {
         //reset the errorLabel in case a mistake was made before
         errorLabel.setText("");
-        //do try catch when introducting connection
         //extract information from fields
         String firstName = tfFirstName.getText().toLowerCase().trim();
         String lastName = tfLastName.getText().toLowerCase().trim();
@@ -285,7 +284,7 @@ public class RegistrationPage extends javax.swing.JFrame {
         
         //verify if email is already in the database
         
-        if (checkIfEmailExists(email)) {
+        if (checkIfEmailInDataBase(email)) {
             //Exit the function to avoid a registration error
             return;
         }
@@ -310,6 +309,7 @@ public class RegistrationPage extends javax.swing.JFrame {
         //register user to database
         
         registerUser(email, firstName, lastName, salt, securePassword);
+        //  -------------------- todo insert user into statistics table later ------------------------------
         
         //Define user and set user details within the application
         createUser(email, firstName, lastName);
@@ -375,22 +375,13 @@ public class RegistrationPage extends javax.swing.JFrame {
             result = false;
         }
         errorMessage += "</html>";
-        
-//        if (passwordConfirm.length() > maxPasswordLength){
-//            errorMessage += "\nThe password confirmation field is too long <br/>";
-//            result = false;
-//        }
-//        else if (passwordConfirm.length() < minPasswordLength){
-//            errorMessage += "\nThe password confirmation field is too short <br/>";
-//            result = false;
-//        }
         if (!result){
             errorLabel.setText(errorMessage);
             errorLabel.setForeground(Color.red);
         }
         return result;
     }
-
+    
     //check if password follows specs
     private boolean checkIfValidPassword(String password) {
         boolean result = true;
@@ -428,7 +419,7 @@ public class RegistrationPage extends javax.swing.JFrame {
         }
         return result;
     }
-
+    
     private boolean checkIfPasswordsMatch(String password, String passwordConfirmation) {
         if(!password.equals(passwordConfirmation)){
             System.out.println("password match error");
@@ -456,21 +447,21 @@ public class RegistrationPage extends javax.swing.JFrame {
         }
         return result;
     }
-
+    
     private String getSalt(String salt) {
         // generate salt
         int saltLength = 254;
         salt = PasswordManager.generateSalt(saltLength);
         return salt;
     }
-
+    
     private String getSecurePassword(String password, String salt) {
         //add encyption to password+salt
         String result = PasswordManager.generateSecurePassword(password, salt);
         return result;
     }
-
-    private boolean checkIfEmailExists(String email) {
+    
+    private boolean checkIfEmailInDataBase(String email) {
         boolean result = JdbcCrud.checkIfEmailExists(email);
         if (result){
             System.out.println("email error");
@@ -495,46 +486,6 @@ public class RegistrationPage extends javax.swing.JFrame {
     private void registerUser(String email, String firstName, String lastName, String salt, String password) {
         JdbcCrud.registerUser(email, firstName, lastName, salt, password);
     }
-    
-    
+
         //check for injections in every db query //ref https://www.journaldev.com/34028/sql-injection-in-java
-        
-             
-//        protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//                    throws ServletException, IOException {
-//            boolean success = false;
-//            String username = request.getParameter("username");
-//            String password = request.getParameter("password");
-//            // Unsafe query which uses string concatenation
-//            String query = "select * from tbluser where username=? and password = ?";
-//            Connection conn = null;
-//            PreparedStatement stmt = null;
-//            try {
-//                conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/user", "root", "root");
-//                stmt = conn.prepareStatement(query);
-//                stmt.setString(1, username);
-//                stmt.setString(2, password);
-//                ResultSet rs = stmt.executeQuery();
-//                if (rs.next()) {
-//                    // Login Successful if match is found
-//                    success = true;
-//                }
-//                rs.close();
-//            }
-//            catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            finally {
-//                try {
-//                    stmt.close();
-//                    conn.close();
-//                } catch (Exception e) {}
-//            }
-//            if (success){
-//                response.sendRedirect("home.html");
-//            } 
-//            else{
-//                response.sendRedirect("login.html?error=1");
-//            }
-//        }
 }

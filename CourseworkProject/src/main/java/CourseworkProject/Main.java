@@ -5,7 +5,6 @@
  */
 package CourseworkProject;
 
-import java.sql.Connection;
 
 /**
  *
@@ -27,7 +26,5 @@ public class Main {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        connectDB connnectDB = new connectDB();
-        Connection connection = connnectDB.getConnection();
     }
 }
